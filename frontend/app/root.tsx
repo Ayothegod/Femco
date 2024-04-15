@@ -5,8 +5,16 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import stylesheet from "~/tailwind.css?url";
+import Header from "./components/Header";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Femco - welcome" },
+    { name: "description", content: "Welcome to Femco, the home high quality fashion ans accessories" },
+  ];
+};
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -21,7 +29,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className=" font-inter">
+        <Header/>
         {children}
         <ScrollRestoration />
         <Scripts />
