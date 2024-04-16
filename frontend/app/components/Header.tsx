@@ -18,7 +18,7 @@ export default function Header() {
       <nav className="flex items-center gap-8">
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link, idx) => (
-            <li className="text-sm md:text-base">
+            <li key={idx} className="text-sm md:text-base">
               <a href={link.href}>{link.name}</a>
             </li>
           ))}

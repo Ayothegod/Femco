@@ -13,7 +13,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <main className="pageStyle">
+    <main className="pageStyle overflow-x-hidden">
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="hidden md:block w-full h-[400px] md:h-[500px] bg-gray-300 rounded-md"></div>
         <div className="w-full min-h-[80vh] md:h-[500px] bg-white rounded-md flex flex-col">
