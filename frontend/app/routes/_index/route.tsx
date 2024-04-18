@@ -2,6 +2,7 @@ import type { MetaFunction } from "@remix-run/node";
 import DealsOfTheMonth from "~/components/DealsOfTheMonth";
 import FollowUs from "~/components/FollowUs";
 import NewArrivals from "~/components/NewArrivals";
+import Testimonial from "~/components/Testimonial";
 import { Button } from "~/components/ui/button";
 
 export const meta: MetaFunction = () => {
@@ -49,6 +50,9 @@ export default function Index() {
 
       {/* Follow us on instagram */}
       <FollowUs/>
+
+      {/* Testimonial */}
+      <Testimonial/>
     </main>
   );
 }
