@@ -33,25 +33,25 @@ const CountdownTimer = ({ targetDate }: any) => {
         <span className="border p-4 rounded-md font-mono text-2xl">
           {timeLeft.days > 0 ? timeLeft.days : 0}
         </span>
-        <p className="font-medium">Days</p>
+        <p className="font-medium text-neutral-600">Days</p>
       </div>
       <div className="flex flex-col items-center">
         <span className="border p-4 rounded-md font-mono text-2xl">
           {timeLeft.hours > 0 ? timeLeft.hours : 0}
         </span>
-        <p className="font-medium">Hrs</p>
+        <p className="font-medium text-neutral-600">Hrs</p>
       </div>
       <div className="flex flex-col items-center">
         <span className="border p-4 rounded-md font-mono text-2xl">
           {timeLeft.minutes > 0 ? timeLeft.minutes : 0}
         </span>
-        <p className="font-medium">Mins</p>
+        <p className="font-medium text-neutral-600">Mins</p>
       </div>
       <div className="flex flex-col items-center">
         <span className="border p-4 rounded-md font-mono text-2xl">
           {timeLeft.seconds > 0 ? timeLeft.seconds : 0}
         </span>
-        <p className="font-medium">Sec</p>
+        <p className="font-medium text-neutral-600">Sec</p>
       </div>
     </aside>
   );
