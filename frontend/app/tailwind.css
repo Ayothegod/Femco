@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .pageStyle {
-  @apply max-w-5xl mx-auto px-4
+  @apply max-w-5xl mx-auto px-4;
+}
+
+.shadowed {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
