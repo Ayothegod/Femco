@@ -1,5 +1,7 @@
 import { imageNumbers } from "~/lib/database";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import image2svg from "../fascoAsset/image 2.svg"
+// import image2svg from "../fascoAsset/image 2 (1).svg"
 
 export default function NewArrivals() {
   return (
@@ -13,6 +15,8 @@ export default function NewArrivals() {
           delectus vel dolor in ex nobis sint itaque vitae, minus saepe?
         </p>
       </div>
+
+
 
       <Tabs defaultValue="men-fashion">
         <TabsList className="flex items-center justify-between">
