@@ -1,12 +1,5 @@
+import { navLinks } from "~/lib/database";
 import { Button } from "./ui/button";
-
-const navLinks = [
-  { name: "Home", href: "#/" },
-  { name: "Deals", href: "#deals" },
-  { name: "New Arrivals", href: "#new-arrivals" },
-  { name: "Packages", href: "#packages" },
-  { name: "Sign in" },
-];
 
 export default function Header() {
   return (
