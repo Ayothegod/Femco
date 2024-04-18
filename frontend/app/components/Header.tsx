@@ -1,4 +1,4 @@
-import React from "react";
+import { Button } from "./ui/button";
 
 const navLinks = [
   { name: "Home", href: "#/" },
@@ -24,9 +24,7 @@ export default function Header() {
           ))}
         </ul>
 
-        <button className="bg-black py-2 px-4 rounded-md text-white text-sms font-medium">
-          Sign up
-        </button>
+        <Button>Sign up</Button>
       </nav>
     </header>
   );
