@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 
 export default function DealsOfTheMonth() {
   return (
-    <div className="mt-8 mb-16 flex flex-col md:flex-row gap-4">
+    <div className="pageStyle mt-8 mb-16 flex flex-col md:flex-row gap-4">
       {/*  */}
       <div className="w-full md:w-[40%] flex flex-col space-y-3">
         <h2 className="text-2xl sm:text-3xl md:text-2xl font-serif font-bold tracking-wide">

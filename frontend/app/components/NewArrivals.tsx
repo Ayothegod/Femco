@@ -1,4 +1,3 @@
-import { imageNumbers } from "~/lib/database";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import maleSvg from "../fascoAsset/image 2.svg";
 import femaleSvg from "../fascoAsset/image 3.svg";
@@ -8,7 +7,7 @@ import { Button } from "./ui/button";
 
 export default function NewArrivals() {
   return (
-    <main className="mt-8 mb-16 overflow-x-hidden">
+    <main className="pageStyle mt-8 mb-16 overflow-x-hidden">
       <div className="text-center">
         <h2 className="text-2xl sm:text-3xl md:text-2xl font-serif font-bold tracking-wide">
           New Arrivals

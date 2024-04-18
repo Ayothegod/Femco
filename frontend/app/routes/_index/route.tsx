@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import DealsOfTheMonth from "~/components/DealsOfTheMonth";
+import FollowUs from "~/components/FollowUs";
 import NewArrivals from "~/components/NewArrivals";
 import { Button } from "~/components/ui/button";
 
@@ -15,8 +16,8 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <main className="pageStyle">
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <main className="">
+      <section className="pageStyle grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="hidden md:block w-full h-[400px] md:h-[500px] bg-gray-300 rounded-md"></div>
         <div className="w-full min-h-[80vh] md:h-[500px] bg-white rounded-md flex flex-col">
           <div className="h-[20%] bg-gray-300 rounded-md">11111111111</div>
@@ -36,7 +37,7 @@ export default function Index() {
       </section>
 
       {/* brands */}
-      <section className="mt-8 mb-16">
+      <section className="pageStyle mt-8 mb-16">
         <p className="font-bold text-3xl">Hello Kitty</p>
       </section>
 
@@ -45,6 +46,9 @@ export default function Index() {
 
       {/* New Arrivals */}
       <NewArrivals/>
+
+      {/* Follow us on instagram */}
+      <FollowUs/>
     </main>
   );
 }
