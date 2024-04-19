@@ -2,7 +2,6 @@ import { Copyright } from "lucide-react";
 import { navLinks } from "~/lib/database";
 
 export default function Footer() {
-  // console.log(new Date().getFullYear());
   const year = new Date().getFullYear();
   return (
     <footer className="pageStyle pb-6">

@@ -20,11 +20,11 @@ export default function NewArrivals() {
 
       <Tabs defaultValue="men-fashion" className="mt-4">
         <TabsList className="flex items-center justify-between overflow-x-scroll sm:overflow-x-hidden">
-          <TabsTrigger value="men-fashion">Men's Fashion</TabsTrigger>
-          <TabsTrigger value="women-fashion">Women's Fashion</TabsTrigger>
-          <TabsTrigger value="women-accessories">Women Accessories</TabsTrigger>
-          <TabsTrigger value="men-accessories">Men Accessories</TabsTrigger>
-          <TabsTrigger value="discount">Discount Deals</TabsTrigger>
+          <TabsTrigger value="men-fashion" className=" w-full">Men's Fashion</TabsTrigger>
+          <TabsTrigger value="women-fashion" className=" w-full">Women's Fashion</TabsTrigger>
+          <TabsTrigger value="women-accessories" className=" w-full">Women Accessories</TabsTrigger>
+          <TabsTrigger value="men-accessories" className=" w-full">Men Accessories</TabsTrigger>
+          <TabsTrigger value="discount" className=" w-full">Discount Deals</TabsTrigger>
         </TabsList>
 
         <div className="mt-4">
