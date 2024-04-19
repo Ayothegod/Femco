@@ -1,6 +1,13 @@
 import DealsCountdown from "./DealsCountdown";
 import { Button } from "./ui/button";
-
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "~/components/ui/carousel"
+// import Autoplay from "embla-carousel-autoplay"
 export default function DealsOfTheMonth() {
   return (
     <div className="pageStyle mt-8 mb-16 flex flex-col md:flex-row gap-4">
