@@ -13,7 +13,7 @@ export default function FollowUs() {
         </p>
       </div>
 
-      {/* <div className="flex items-center justify-center overflow-x-scroll md:overflow-x-hidden">
+      <div className="flex overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 rounded-md">
         {imageNumbers.map((image, index) => (
           <img
             key={index}
@@ -22,7 +22,7 @@ export default function FollowUs() {
             className="object-contain"
           />
         ))}
-      </div> */}
+      </div>
     </section>
   );
 }
