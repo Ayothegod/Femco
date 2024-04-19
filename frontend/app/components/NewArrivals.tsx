@@ -6,16 +6,9 @@ import female2Png from "../fascoAsset/Rectangle 19280 (1).png";
 import femaleFashion from "../fascoAsset/Images.png";
 import { Button } from "./ui/button";
 import { useRef, useState } from "react";
+import { tabsTrigger } from "~/lib/database";
 
 export default function NewArrivals() {
-  const tabsTrigger = [
-    { value: "men-fashion", text: "Men's Fashion" },
-    { value: "women-fashion", text: "Women's Fashion" },
-    { value: "women-accessories", text: "Women Accessories" },
-    { value: "men-accessories", text: "Men Accessories" },
-    { value: "discount", text: "Discount Deals" },
-  ];
-
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
 
   const handleButtonClick = (index: any) => {
@@ -47,7 +40,7 @@ export default function NewArrivals() {
               <span
                 className={`${
                   selectedButtonIndex !== index &&
-                  "absolute w-2 h-2 bg-red-500 right-2 top-1 rounded-full animate-ping"
+                  "absolute w-2 h-2 bg-red-500 right-2 top-1 rounded-full animate-pulse"
                 } `}
               ></span>
             </TabsTrigger>
@@ -111,20 +104,3 @@ export default function NewArrivals() {
     </main>
   );
 }
-
-// <TabsTrigger value="men-fashion" className=" w-full">
-//   Men's Fashion
-// </TabsTrigger>
-// <TabsTrigger value="women-fashion" className="relative w-full">
-//   Women's Fashion
-//   <span className="absolute w-2 h-2 bg-red-600 right-2 top-1 rounded-full animate-ping"></span>
-// </TabsTrigger>
-// <TabsTrigger value="women-accessories" className=" w-full">
-//   Women Accessories
-// </TabsTrigger>
-// <TabsTrigger value="men-accessories" className=" w-full">
-//   Men Accessories
-// </TabsTrigger>
-// <TabsTrigger value="discount" className=" w-full">
-//   Discount Deals
-// </TabsTrigger>

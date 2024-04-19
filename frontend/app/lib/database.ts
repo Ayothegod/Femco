@@ -25,3 +25,11 @@ export const imageCarouselArray = [
   { src: image6, alt: "sixth-image" },
   { src: image7, alt: "seventh-image" },
 ];
+
+export const tabsTrigger = [
+  { value: "men-fashion", text: "Men's Fashion" },
+  { value: "women-fashion", text: "Women's Fashion" },
+  { value: "women-accessories", text: "Women Accessories" },
+  { value: "men-accessories", text: "Men Accessories" },
+  { value: "discount", text: "Discount Deals" },
+];
