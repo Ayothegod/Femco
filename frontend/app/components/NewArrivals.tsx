@@ -3,6 +3,7 @@ import maleSvg from "../fascoAsset/image 2.svg";
 import femaleSvg from "../fascoAsset/image 3.svg";
 import female1Png from "../fascoAsset/Rectangle 19280.png";
 import female2Png from "../fascoAsset/Rectangle 19280 (1).png";
+import femaleFashion from "../fascoAsset/Images.png";
 import { Button } from "./ui/button";
 
 export default function NewArrivals() {
@@ -20,20 +21,32 @@ export default function NewArrivals() {
 
       <Tabs defaultValue="men-fashion" className="mt-4">
         <TabsList className="flex items-center justify-between overflow-x-scroll sm:overflow-x-hidden">
-          <TabsTrigger value="men-fashion" className=" w-full">Men's Fashion</TabsTrigger>
-          <TabsTrigger value="women-fashion" className=" w-full">Women's Fashion</TabsTrigger>
-          <TabsTrigger value="women-accessories" className=" w-full">Women Accessories</TabsTrigger>
-          <TabsTrigger value="men-accessories" className=" w-full">Men Accessories</TabsTrigger>
-          <TabsTrigger value="discount" className=" w-full">Discount Deals</TabsTrigger>
+          <TabsTrigger value="men-fashion" className=" w-full">
+            Men's Fashion
+          </TabsTrigger>
+          <TabsTrigger value="women-fashion" className=" w-full">
+            Women's Fashion
+          </TabsTrigger>
+          <TabsTrigger value="women-accessories" className=" w-full">
+            Women Accessories
+          </TabsTrigger>
+          <TabsTrigger value="men-accessories" className=" w-full">
+            Men Accessories
+          </TabsTrigger>
+          <TabsTrigger value="discount" className=" w-full">
+            Discount Deals
+          </TabsTrigger>
         </TabsList>
 
         <div className="mt-4">
           <TabsContent value="men-fashion">
-            <img
-              src={maleSvg}
-              alt="image@svg"
-              className="h-48 w-48 object-cover object-top"
-            />
+            <div className="p-1 shadow-md">
+              <img
+                src={femaleFashion}
+                alt="image@svg"
+                className="h-48 w-full object-cover object-top"
+              />
+            </div>
           </TabsContent>
           <TabsContent value="women-fashion">
             <img
