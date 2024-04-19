@@ -5,8 +5,23 @@ import female1Png from "../fascoAsset/Rectangle 19280.png";
 import female2Png from "../fascoAsset/Rectangle 19280 (1).png";
 import femaleFashion from "../fascoAsset/Images.png";
 import { Button } from "./ui/button";
+import { useRef, useState } from "react";
 
 export default function NewArrivals() {
+  const tabsTrigger = [
+    { value: "men-fashion", text: "Men's Fashion" },
+    { value: "women-fashion", text: "Women's Fashion" },
+    { value: "women-accessories", text: "Women Accessories" },
+    { value: "men-accessories", text: "Men Accessories" },
+    { value: "discount", text: "Discount Deals" },
+  ];
+
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
+
+  const handleButtonClick = (index: any) => {
+    setSelectedButtonIndex(index);
+  };
+
   return (
     <main className="pageStyle mt-8 mb-16 overflow-x-hidden">
       <div className="text-center">
@@ -21,30 +36,31 @@ export default function NewArrivals() {
 
       <Tabs defaultValue="men-fashion" className="mt-4">
         <TabsList className="flex items-center justify-between overflow-x-scroll sm:overflow-x-hidden">
-          <TabsTrigger value="men-fashion" className=" w-full">
-            Men's Fashion
-          </TabsTrigger>
-          <TabsTrigger value="women-fashion" className=" w-full">
-            Women's Fashion
-          </TabsTrigger>
-          <TabsTrigger value="women-accessories" className=" w-full">
-            Women Accessories
-          </TabsTrigger>
-          <TabsTrigger value="men-accessories" className=" w-full">
-            Men Accessories
-          </TabsTrigger>
-          <TabsTrigger value="discount" className=" w-full">
-            Discount Deals
-          </TabsTrigger>
+          {tabsTrigger.map((tab, index) => (
+            <TabsTrigger
+              value={tab.value}
+              className={`w-full relative`}
+              key={index}
+              onClick={() => handleButtonClick(index)}
+            >
+              {tab.text}
+              <span
+                className={`${
+                  selectedButtonIndex !== index &&
+                  "absolute w-2 h-2 bg-red-500 right-2 top-1 rounded-full animate-ping"
+                } `}
+              ></span>
+            </TabsTrigger>
+          ))}
         </TabsList>
 
         <div className="mt-4">
           <TabsContent value="men-fashion">
-            <div className="p-1 shadow-md">
+            <div className="p-1">
               <img
                 src={femaleFashion}
                 alt="image@svg"
-                className="h-48 w-full object-cover object-top"
+                className="h-48 w-full sm:w-48 object-cover object-top"
               />
             </div>
           </TabsContent>
@@ -95,3 +111,20 @@ export default function NewArrivals() {
     </main>
   );
 }
+
+// <TabsTrigger value="men-fashion" className=" w-full">
+//   Men's Fashion
+// </TabsTrigger>
+// <TabsTrigger value="women-fashion" className="relative w-full">
+//   Women's Fashion
+//   <span className="absolute w-2 h-2 bg-red-600 right-2 top-1 rounded-full animate-ping"></span>
+// </TabsTrigger>
+// <TabsTrigger value="women-accessories" className=" w-full">
+//   Women Accessories
+// </TabsTrigger>
+// <TabsTrigger value="men-accessories" className=" w-full">
+//   Men Accessories
+// </TabsTrigger>
+// <TabsTrigger value="discount" className=" w-full">
+//   Discount Deals
+// </TabsTrigger>

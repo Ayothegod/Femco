@@ -13,7 +13,7 @@ export default function FollowUs() {
         </p>
       </div>
 
-      <div className="flex overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 rounded-md">
+      <div className="flex overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 rounded-md py-4">
         {imageNumbers.map((image, index) => (
           <img
             key={index}
