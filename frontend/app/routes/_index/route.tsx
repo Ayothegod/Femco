@@ -2,6 +2,7 @@ import type { MetaFunction } from "@remix-run/node";
 import DealsOfTheMonth from "~/components/DealsOfTheMonth";
 import FollowUs from "~/components/FollowUs";
 import NewArrivals from "~/components/NewArrivals";
+import Newsletter from "~/components/Newsletter";
 import Testimonial from "~/components/Testimonial";
 import { Button } from "~/components/ui/button";
 
@@ -53,6 +54,9 @@ export default function Index() {
 
       {/* Testimonial */}
       <Testimonial/>
+
+      {/* Newsletter */}
+      <Newsletter/>
     </main>
   );
 }
