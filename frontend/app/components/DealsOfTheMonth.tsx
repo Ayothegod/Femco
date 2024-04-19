@@ -1,3 +1,5 @@
+import * as React from "react";
+import Autoplay from "embla-carousel-autoplay";
 import DealsCountdown from "./DealsCountdown";
 import { Button } from "./ui/button";
 import {
@@ -6,11 +8,17 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "~/components/ui/carousel"
-// import Autoplay from "embla-carousel-autoplay"
+} from "~/components/ui/carousel";
+import { Card, CardContent } from "~/components/ui/card";
+import { imageCarouselArray } from "~/lib/database";
+
 export default function DealsOfTheMonth() {
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000 }) // stopOnInteraction: true
+  );
+
   return (
-    <div className="pageStyle mt-8 mb-16 flex flex-col md:flex-row gap-4">
+    <div className="pageStyle mt-8 mb-16 flex flex-col md:flex-row gap-8">
       {/*  */}
       <div className="w-full md:w-[40%] flex flex-col space-y-3">
         <h2 className="text-2xl sm:text-3xl md:text-2xl font-serif font-bold tracking-wide">
@@ -31,8 +39,29 @@ export default function DealsOfTheMonth() {
         </div>
       </div>
 
-      <div className="">
-        <p>Carousel</p>
+      <div className="flex items-center justify-center md:w-[60%]">
+        <Carousel
+          plugins={[plugin.current]}
+          className="w-full "
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={plugin.current.reset}
+        >
+          <CarouselContent>
+            {imageCarouselArray.map((_, index) => (
+              <CarouselItem key={index} className="md:basis-1/2">
+                <div className="">
+                  <img
+                    src={_.src}
+                    alt={_.alt}
+                    className="w-full object-cover h-96 object-top"
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          {/* <CarouselPrevious />
+          <CarouselNext /> */}
+        </Carousel>
       </div>
     </div>
   );
