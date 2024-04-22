@@ -33,7 +33,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body className=" font-inter">
         <Header/>
         {children}
-        <Footer/>
+        {/* <Footer/> */}
         <ScrollRestoration />
         <Scripts />
       </body>

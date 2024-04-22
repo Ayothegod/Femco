@@ -109,7 +109,7 @@ export default function Index() {
       </section>
 
       {/* Follow us on instagram */}
-      <FollowUs />
+      {/* <FollowUs /> */}
 
       {/* Testimonial */}
       <Testimonial />

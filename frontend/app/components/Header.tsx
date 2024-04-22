@@ -1,21 +1,20 @@
 import { navLinks } from "~/lib/database";
 import { Button } from "./ui/button";
 import { Link, useLocation } from "@remix-run/react";
+import IsAuthPage from "./utils/IsAuthPage";
+import { IsUserLink } from "./utils/IsLoggedIn";
 
 export default function Header() {
-  const location = useLocation();
-  const path = location.pathname;
-  const user = false;
-
   return (
     <header className="pageStyle flex items-center justify-between py-6">
-      <Link to={`${user ? "/" : "/login"}`}>
+      <IsUserLink>
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold tracking-wide">
           FASCO
         </h1>
-      </Link>
+      </IsUserLink>
 
-      {path !== "/login" && path !== "/register" && (
+      <IsAuthPage>
+        <p>Hello</p>
         <nav className="flex items-center gap-8">
           <ul className="hidden md:flex items-center gap-8">
             {navLinks.map((link, idx) => (
@@ -27,7 +26,7 @@ export default function Header() {
 
           <Button>Sign up</Button>
         </nav>
-      )}
+      </IsAuthPage>
     </header>
   );
 }
