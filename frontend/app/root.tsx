@@ -13,7 +13,11 @@ import Footer from "./components/Footer";
 export const meta: MetaFunction = () => {
   return [
     { title: "Femco - welcome" },
-    { name: "description", content: "Welcome to Femco, the home high quality fashion ans accessories" },
+    {
+      name: "description",
+      content:
+        "Welcome to Femco, the home high quality fashion ans accessories",
+    },
   ];
 };
 
@@ -31,9 +35,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className=" font-inter">
-        <Header/>
+        <Header />
         {children}
-        {/* <Footer/> */}
+        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>

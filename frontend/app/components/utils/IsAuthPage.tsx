@@ -9,12 +9,6 @@ export default function IsAuthPage({
   const path = location.pathname;
 
   return (
-    <>
-      {path !== "/login" && path !== "/register" ? (
-        <>
-          {children}
-        </>
-      ) : null}
-    </>
+    <>{path !== "/login" && path !== "/register" ? <>{children}</> : null}</>
   );
 }
