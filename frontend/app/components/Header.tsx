@@ -1,6 +1,5 @@
 import { navLinks } from "~/lib/database";
 import { Button } from "./ui/button";
-import { Link, useLocation } from "@remix-run/react";
 import IsAuthPage from "./utils/IsAuthPage";
 import { IsUserLink } from "./utils/IsLoggedIn";
 
@@ -14,7 +13,6 @@ export default function Header() {
       </IsUserLink>
 
       <IsAuthPage>
-        <p>Hello</p>
         <nav className="flex items-center gap-8">
           <ul className="hidden md:flex items-center gap-8">
             {navLinks.map((link, idx) => (
