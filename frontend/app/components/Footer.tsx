@@ -1,5 +1,5 @@
 import { Copyright } from "lucide-react";
-import { navLinks } from "~/lib/database";
+import { isNotLoggedInNavLink } from "~/lib/database";
 import IsAuthPage from "./utils/IsAuthPage";
 
 export default function Footer() {
@@ -12,7 +12,7 @@ export default function Footer() {
             FASCO
           </h1>
           <ul className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 mt-4 md:mt-0">
-            {navLinks.map((link, idx) => (
+            {isNotLoggedInNavLink.map((link, idx) => (
               <li
                 key={idx}
                 className="text-sm md:text-base font-medium text-neutral-600"

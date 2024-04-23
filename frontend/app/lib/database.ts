@@ -5,13 +5,28 @@ import image4 from "../fascoAsset/image (7).png";
 import image5 from "../fascoAsset/image (8).png";
 import image6 from "../fascoAsset/image (9).png";
 import image7 from "../fascoAsset/image (10).png";
+import { Contact, Search, ShoppingBag, Star } from "lucide-react";
 
-export const navLinks = [
+export const loggedInIcons = [
+  { icon: Search,  },
+  { icon: Contact },
+  { icon: Star },
+  { icon: ShoppingBag },
+];
+
+export const isNotLoggedInNavLink = [
   { name: "Home", href: "#/" },
   { name: "Deals", href: "#deals" },
   { name: "New Arrivals", href: "#new-arrivals" },
   { name: "Packages", href: "#packages" },
   { name: "Sign in" },
+];
+
+export const isLoggedInNavLink = [
+  { name: "Home", href: "/" },
+  { name: "Shop", href: "/shop" },
+  { name: "Products", href: "/products" },
+  { name: "pages", href: "#" },
 ];
 
 export const imageNumbers = [1, 2, 3, 4, 5, 6];

@@ -1,9 +1,15 @@
-import { navLinks } from "~/lib/database";
+import {
+  isLoggedInNavLink,
+  isNotLoggedInNavLink,
+  loggedInIcons,
+} from "~/lib/database";
 import { Button } from "./ui/button";
 import IsAuthPage from "./utils/IsAuthPage";
 import { IsUserLink } from "./utils/IsLoggedIn";
 
 export default function Header() {
+  const user = true;
+
   return (
     <header className="pageStyle flex items-center justify-between py-6">
       <IsUserLink>
@@ -13,17 +19,36 @@ export default function Header() {
       </IsUserLink>
 
       <IsAuthPage>
-        <nav className="flex items-center gap-8">
-          <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link, idx) => (
-              <li key={idx} className="text-sm md:text-base">
-                <a href={link.href}>{link.name}</a>
-              </li>
-            ))}
-          </ul>
+        {user ? (
+          <nav className="flex items-center justify-between gap-8">
+            <ul className="hidden md:flex items-center gap-8">
+              {isLoggedInNavLink.map((link, idx) => (
+                <li key={idx} className="text-sm md:text-base">
+                  <a href={link.href}>{link.name}</a>
+                </li>
+              ))}
+            </ul>
 
-          <Button>Sign up</Button>
-        </nav>
+            <div>
+              {loggedInIcons.map((icon, id) => (
+                <div key={id}>
+                  <icon.icon />
+                </div>
+              ))}
+            </div>
+          </nav>
+        ) : (
+          <nav className="flex items-center gap-8">
+            <ul className="hidden md:flex items-center gap-8">
+              {isNotLoggedInNavLink.map((link, idx) => (
+                <li key={idx} className="text-sm md:text-base">
+                  <a href={link.href}>{link.name}</a>
+                </li>
+              ))}
+            </ul>
+            <Button>Sign up</Button>
+          </nav>
+        )}
       </IsAuthPage>
     </header>
   );
