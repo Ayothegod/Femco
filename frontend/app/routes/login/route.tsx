@@ -3,7 +3,7 @@ import bannerImage from "../../fascoAsset/Rectangle 19280.png";
 import { Button } from "~/components/ui/button";
 import { Form, Link } from "@remix-run/react";
 import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
-import { oauthGoogleLogin } from "./loginController";
+import { appwriteSignup } from "./loginController";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   
@@ -13,11 +13,11 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const intent = await formData.get("intent");
+  // import.meta.env.VITE_PROJECT_ENDPOINT
   
   if (intent === "signInWithGoogle") {
-    // const result = await oauthGoogleLogin()
-    // console.log(result);
-    
+    const result = await appwriteSignup()
+    console.log(result);
     return null
   }
 
