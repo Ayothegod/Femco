@@ -31,7 +31,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function LoginRoute() {
   return (
-    <main className="pageStyle flex items-center justify-center mt-10">
+    <main className="pageStyle flex items-center justify-center">
       <div className="flex w-full sm:max-w-sm md:max-w-2xl border rounded-md overflow-hidden">
         {/* <p className="hidden sm:block">Hello</p> */}
         <div className="md:max-w-[50%] hidden md:block">
