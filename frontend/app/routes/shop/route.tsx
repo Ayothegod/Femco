@@ -3,6 +3,7 @@ import Newsletter from "~/components/Newsletter";
 import slider from "../../fascoAsset/slider.png";
 import { MetaFunction } from "@remix-run/node";
 import Crucible from "~/components/utils/Crucible";
+import Filters from "~/components/Filters";
 
 export const meta: MetaFunction = () => {
   return [
@@ -24,11 +25,13 @@ export default function ShopRoute() {
         <Crucible backLink="/" backTitle="Home" presentTitle="Fashion" />
       </section>
 
-      <section className="pageStyle flex">
-
+      <section className="pageStyle mt-8 flex">
         {/* filter */}
-        <aside className="hidden md:block w-[20%] border border-red-800">
-            <h3>Filters</h3>
+        <aside className="hidden md:block w-[25%] lg:w-[20%]">
+          <h3 className="text-xl font-serif font-bold tracking-wide">
+            Filters
+          </h3>
+          <Filters/>
         </aside>
 
         {/* products */}
