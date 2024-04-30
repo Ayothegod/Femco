@@ -17,10 +17,10 @@ import slider from "../../fascoAsset/slider.png";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Femco - Homepage" },
+    { title: "Fasco - Homepage" },
     {
       name: "description",
-      content: "Femco, the home of high quality apparels",
+      content: "Fasco, the home of high quality apparels",
     },
   ];
 };
@@ -109,7 +109,7 @@ export default function Index() {
       </section>
 
       {/* Follow us on instagram */}
-      {/* <FollowUs /> */}
+      <FollowUs />
 
       {/* Testimonial */}
       <Testimonial />
