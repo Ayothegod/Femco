@@ -19,8 +19,10 @@ export default function Header() {
       </IsUserLink>
 
       <IsAuthPage>
-        {user ? (
-          <nav className="flex items-center justify-between gap-8">
+        {user 
+        
+        ? (
+          <nav className=" contents">
             <ul className="hidden md:flex items-center gap-8">
               {isLoggedInNavLink.map((link, idx) => (
                 <li key={idx} className="text-sm md:text-base">
@@ -29,7 +31,7 @@ export default function Header() {
               ))}
             </ul>
 
-            <div>
+            <div className="flex gap-4 md:gap-8">
               {loggedInIcons.map((icon, id) => (
                 <div key={id}>
                   <icon.icon />
@@ -37,7 +39,9 @@ export default function Header() {
               ))}
             </div>
           </nav>
-        ) : (
+        ) 
+        
+        : (
           <nav className="flex items-center gap-8">
             <ul className="hidden md:flex items-center gap-8">
               {isNotLoggedInNavLink.map((link, idx) => (

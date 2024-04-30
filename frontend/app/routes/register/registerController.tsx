@@ -45,6 +45,6 @@ export const appwriteSignup = async (payload: any) => {
     return promise;
   } catch (error) {
     console.log(error);
-    return error;
+    //  appwriteError = error 
   }
 };
