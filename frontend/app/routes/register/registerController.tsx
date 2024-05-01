@@ -1,36 +1,7 @@
 import { ID, Models, OAuthProvider } from "appwrite";
 import { account } from "~/lib/appwrite";
 
-import { z } from "zod";
-import { useForm } from "@conform-to/react";
-import { parseWithZod } from "@conform-to/zod";
-
-function generateUserID(length: number) {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
-  let userID = "";
-  for (let i = 0; i < length; i++) {
-    userID += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return userID;
-}
-
-export const registerSchema = z.object({
-  email: z
-    .string({ required_error: "Email is required" })
-    .email("Email is invalid"),
-  fullname: z
-    .string({ required_error: "Fullname is required" })
-    .min(3, "Fullname is too short")
-    .max(100, "Fullname is too long"),
-  password: z
-    .string({ required_error: "Password is required" })
-    .min(10, "Password is too short")
-    .max(100, "Password is too long"),
-});
-
-export const createEmailSession = async (email: string, password: string) => {
+export const login = async (email: string, password: string) => {
   const loggedIn = await account.createEmailPasswordSession(email, password);
   console.log(loggedIn);
 
@@ -74,12 +45,10 @@ export const appwriteSignup = async (
     );
 
     // only created session if there is no issue with promise result
-    const emailSession = await createEmailSession(
+    const emailSession = await login(
       payload.email,
       payload.password
     );
-
-    // const session = await getUserDetails()
 
     return { message: "User created successfully", promise, emailSession };
   } catch (error: any) {
@@ -108,8 +77,8 @@ type AppwriteError = {
 
 export const getUserDetails = async () => {
   try {
-    const result = await account.getSession("current");
-    console.log(result);
+    const result = await account.get();
+    // console.log(result);
     return result;
   } catch (error) {
     console.log(error);

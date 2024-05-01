@@ -6,11 +6,13 @@ import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
 import { Input } from "~/components/ui/input";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
-import { appwriteSignup, getUserDetails, registerSchema } from "./registerController";
+import { appwriteSignup, getUserDetails } from "./registerController";
+import { registerSchema } from "~/lib/schema";
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  // import.meta.env.VITE_PROJECT_ENDPOINT
   const result = await getUserDetails()
+  console.log(result);
+  
   
   return json({ msg: "hello" });
 }
@@ -18,13 +20,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const intent = await formData.get("intent");
-  // if (intent === "signInWithGoogle") {
-  //   return null;
-  // }
-
-  // if (intent === "signInWithGithub") {
-  //   return null;
-  // }
 
   if (intent === "signInWithPassword") {
     const submission = parseWithZod(formData, {
