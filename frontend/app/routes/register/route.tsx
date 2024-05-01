@@ -6,10 +6,12 @@ import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
 import { Input } from "~/components/ui/input";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
-import { appwriteSignup, registerSchema } from "./registerController";
+import { appwriteSignup, getUserDetails, registerSchema } from "./registerController";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   // import.meta.env.VITE_PROJECT_ENDPOINT
+  const result = await getUserDetails()
+  
   return json({ msg: "hello" });
 }
 
@@ -32,7 +34,8 @@ export async function action({ request }: ActionFunctionArgs) {
       return submission.reply();
     }
 
-    const result: any = await appwriteSignup(submission.payload);
+    const result = await appwriteSignup(submission.payload);
+    // result.
     console.log(result);
     return json({ msg: "schema parsed" });
   }
