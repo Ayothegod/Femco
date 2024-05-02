@@ -9,3 +9,7 @@
 - [ ] add border buttom to the active link 
 - [ ] ooops
 
+mkdir src/routes
+touch src/routes/root.jsx
+
+command line commands -- localforage match-sorter sort-by
