@@ -1,37 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
-import RootLayout from "./layouts/RootLayout.tsx";
-import Root from "./routes/root.tsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import RootLayout from "./layouts/RootLayout.tsx";
+import Root, {loader as rootLoader} from "./routes/root.tsx";
 import Shop from "./routes/shop.tsx";
+import RegisterRoute, {
+  loader as registerLoader,
+  action as registerAction,
+} from "./routes/register.tsx";
+import ErrorPage from "./routes/error-page.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
+    loader: rootLoader,
   },
   {
     path: "/shop",
     element: <Shop />,
   },
+  {
+    path: "/register",
+    element: <RegisterRoute />,
+    loader: registerLoader,
+    action: registerAction,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <RootLayout>
-        <Routes>
-          <Route path="/" element={<Root />} />
-        </Routes>
-      </RootLayout>
-    </BrowserRouter>
-    {/* <RouterProvider router={router} /> */}
+    {/* <RootLayout> */}
+    {/* </RootLayout> */}
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

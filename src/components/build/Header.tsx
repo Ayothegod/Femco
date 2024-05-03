@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import {
   isLoggedInNavLink,
   isNotLoggedInNavLink,
@@ -6,20 +6,18 @@ import {
 } from "../../lib/database";
 import { Button } from "../ui/button";
 import IsAuthPage from "../utils/IsAuthPage";
-import { IsUserLink } from "../utils/IsLoggedIn";
+import { IsLoggedIn } from "../utils/IsLoggedIn";
 
 export default function Header() {
-  const user = true;
+  const user = false;
 
   return (
     <header className="pageStyle flex items-center justify-between py-6">
-      <IsUserLink>
+      <IsLoggedIn>
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold tracking-wide">
           FASCO
         </h1>
-      </IsUserLink>
-
-      {/* <p>Header</p> */}
+      </IsLoggedIn>
 
       <IsAuthPage>
         {user ? (

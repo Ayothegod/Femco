@@ -1,18 +1,62 @@
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
-import { Link } from "react-router-dom";
+import {
+  ActionFunctionArgs,
+  Form,
+  Link,
+  LoaderFunctionArgs,
+  json,
+  useActionData,
+} from "react-router-dom";
 import bannerImage from "../fascoAsset/Rectangle 19280 (1).png";
+import { getUserDetails, logout, register } from "../services/authAction";
+import { registerSchema } from "../lib/schema";
+import { parseWithZod } from "@conform-to/zod";
+import { useForm } from "@conform-to/react";
+import LogOut from "../components/utils/LogOut";
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const result = await getUserDetails();
+  console.log(result);
+
+  return json({ msg: "hello" });
+}
+
+export async function action({ request }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const intent = await formData.get("intent");
+
+  if (intent === "signInWithPassword") {
+    const submission = parseWithZod(formData, {
+      schema: registerSchema,
+    });
+    if (submission.status !== "success") {
+      return submission.reply();
+    }
+
+    const result = await register(submission.payload);
+    return json({ msg: "User logged in" });
+  }
+
+  if (intent === "logout") {
+    const deleteSession = await logout();
+    return json(null);
+  }
+
+  console.log("no intent found");
+  return json({ msg: "hello" });
+}
 
 export default function RegisterRoute() {
-  //   const lastResult: any = useActionData<typeof action>();
-  //   const [form, fields] = useForm({
-  //     lastResult,
-  //     onValidate({ formData }) {
-  //       return parseWithZod(formData, { schema: registerSchema });
-  //     },
-  //     shouldValidate: "onBlur",
-  //     shouldRevalidate: "onInput",
-  //   });
+  const lastResult: any = useActionData();
+  const [form, fields] = useForm({
+    lastResult,
+    onValidate({ formData }) {
+      return parseWithZod(formData, { schema: registerSchema });
+    },
+    shouldValidate: "onBlur",
+    shouldRevalidate: "onInput",
+  });
 
   return (
     <main className="pageStyle flex items-center justify-center">
@@ -28,9 +72,16 @@ export default function RegisterRoute() {
           <h2 className="text-lg font-serif font-bold tracking-wide">
             Create Account
           </h2>
+          {/* <Form method="post">
+            <Button name="intent" value="logout">
+              Logout
+            </Button>
+          </Form> */}
+
+          <LogOut/>
 
           <div className="mt-2 flex flex-col md:flex-row items-center justify-center w-full gap-2">
-            <form method="post" className="contents">
+            <Form method="post" className="contents">
               <Button
                 variant="outline"
                 size="sm"
@@ -40,9 +91,9 @@ export default function RegisterRoute() {
               >
                 sign in with Google
               </Button>
-            </form>
+            </Form>
 
-            <form method="post" className="contents">
+            <Form method="post" className="contents">
               <Button
                 variant="default"
                 size="sm"
@@ -52,17 +103,17 @@ export default function RegisterRoute() {
               >
                 sign in with Github
               </Button>
-            </form>
+            </Form>
           </div>
 
           <span className="text-center text-lg font-bold text-neutral-600">
             OR
           </span>
-          {/* <div>{fields.email.errors}</div>
+          <div>{fields.email.errors}</div>
           {fields.fullname.errors ? <div>{fields.fullname.errors}</div> : null}
-          <div>{fields.password.errors}</div> */}
+          <div>{fields.password.errors}</div>
 
-          <form method="post" className="space-y-4">
+          <Form method="post" className="space-y-4">
             <Input placeholder="Full Name" name="fullname" />
             <Input placeholder="Email Address" name="email" />
             <Input placeholder="Password" name="password" />
@@ -75,7 +126,7 @@ export default function RegisterRoute() {
             >
               Create Account
             </Button>
-          </form>
+          </Form>
 
           <Link
             to="/"

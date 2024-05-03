@@ -1,3 +1,4 @@
+import { json, useLoaderData } from "react-router-dom";
 import DealsOfTheMonth from "../components/build/DealsOfTheMonth";
 import FollowUs from "../components/build/FollowUs";
 import NewArrivals from "../components/build/NewArrivals";
@@ -13,9 +14,18 @@ import chanelLogo from "../fascoAsset/logo (3).png";
 import calvinKleinLogo from "../fascoAsset/logo.png";
 import slider from "../fascoAsset/slider.png";
 
+export async function loader() {
+  console.log("loader");
+  
+  return json(null)
+}
+
 export default function Root() {
+  // const loaderData = useLoaderData()
+
   return (
     <main className="">
+      {/* <button onClick={createError}>CreateError </button> */}
       <section className="pageStyle grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="hidden md:block w-full h-[400px] md:h-[500px] bg-gray-300 rounded-md">
           <img

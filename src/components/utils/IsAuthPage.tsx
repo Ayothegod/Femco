@@ -8,7 +8,6 @@ export default function IsAuthPage({
 }) {
   const location = useLocation();
   const path = location.pathname;
-  // const path = "/"
 
   return (
     <>{path !== "/login" && path !== "/register" ? <>{children}</> : null}</>
