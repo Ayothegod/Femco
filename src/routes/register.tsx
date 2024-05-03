@@ -18,7 +18,6 @@ import LogOut from "../components/utils/LogOut";
 export async function loader({ request }: LoaderFunctionArgs) {
   const result = await getUserDetails();
   console.log(result);
-
   return json({ msg: "hello" });
 }
 
@@ -72,13 +71,7 @@ export default function RegisterRoute() {
           <h2 className="text-lg font-serif font-bold tracking-wide">
             Create Account
           </h2>
-          {/* <Form method="post">
-            <Button name="intent" value="logout">
-              Logout
-            </Button>
-          </Form> */}
-
-          <LogOut/>
+          <LogOut />
 
           <div className="mt-2 flex flex-col md:flex-row items-center justify-center w-full gap-2">
             <Form method="post" className="contents">

@@ -10,6 +10,10 @@ import RegisterRoute, {
   action as registerAction,
 } from "./routes/register.tsx";
 import ErrorPage from "./routes/error-page.tsx";
+import LoginRoute, {
+  loader as loginLoader,
+  action as loginAction,
+} from "./routes/login.tsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +31,12 @@ const router = createBrowserRouter([
     element: <RegisterRoute />,
     loader: registerLoader,
     action: registerAction,
+  },
+  {
+    path: "/login",
+    element: <LoginRoute />,
+    loader: loginLoader,
+    action: loginAction,
   },
 ]);
 
