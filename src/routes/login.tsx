@@ -32,7 +32,6 @@ export async function action({ request }: ActionFunctionArgs) {
     if (submission.status !== "success") {
       return submission.reply();
     }
-
     const result = await login(submission.payload.email as string, submission.payload.password as string);
     return json({ msg: "User logged in" });
   }
