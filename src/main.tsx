@@ -2,48 +2,119 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import RootLayout from "./layouts/RootLayout.tsx";
-import Root, {loader as rootLoader} from "./routes/root.tsx";
+import RootLayout, {
+  Loader as rootLayoutLoader,
+} from "./layouts/RootLayout.tsx";
+import  Root, { Loader as rootLoader } from "./routes/root.tsx";
 import Shop from "./routes/shop.tsx";
 import RegisterRoute, {
-  loader as registerLoader,
+  Loader as registerLoader,
   action as registerAction,
 } from "./routes/register.tsx";
 import ErrorPage from "./routes/error-page.tsx";
 import LoginRoute, {
-  loader as loginLoader,
-  action as loginAction,
+  Loader as loginLoader,
+  Action as loginAction,
 } from "./routes/login.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    loader: rootLoader,
-  },
-  {
-    path: "/shop",
-    element: <Shop />,
-  },
-  {
-    path: "/register",
-    element: <RegisterRoute />,
-    loader: registerLoader,
-    action: registerAction,
-  },
-  {
-    path: "/login",
-    element: <LoginRoute />,
-    loader: loginLoader,
-    action: loginAction,
+    element: <RootLayout />,
+    loader: rootLayoutLoader,
+    children: [
+      {
+        path: "/",
+        element: <Root />,
+        errorElement: <ErrorPage />,
+        loader: rootLoader,
+      },
+      {
+        path: "/shop",
+        element: <Shop />,
+      },
+      {
+        path: "/register",
+        element: <RegisterRoute />,
+        loader: registerLoader,
+        action: registerAction,
+      },
+      {
+        path: "/login",
+        element: <LoginRoute />,
+        loader: loginLoader,
+        action: loginAction,
+      },
+    ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    {/* <RootLayout> */}
-    {/* </RootLayout> */}
+  // <React.StrictMode>
+  // </React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
 );
+
+
+
+
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import "./index.css";
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import RootLayout, {
+//   loader as rootLayoutLoader,
+// } from "./layouts/RootLayout.tsx";
+// import  Root, { Loader as rootLoader } from "./routes/root.tsx";
+// import Shop from "./routes/shop.tsx";
+// import RegisterRoute, {
+//   loader as registerLoader,
+//   action as registerAction,
+// } from "./routes/register.tsx";
+// import ErrorPage from "./routes/error-page.tsx";
+// import LoginRoute, {
+//   loader as loginLoader,
+//   action as loginAction,
+// } from "./routes/login.tsx";
+
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <Root />,
+//     errorElement: <ErrorPage />,
+//     loader: rootLoader,
+//   },
+//   // {
+//   //   element: <RootLayout />,
+//   //   loader: rootLayoutLoader,
+//   //   children: [
+//   //     {
+//   //       path: "/",
+//   //       element: <Root />,
+//   //       errorElement: <ErrorPage />,
+//   //       loader: rootLoader,
+//   //     },
+//   //     {
+//   //       path: "/shop",
+//   //       element: <Shop />,
+//   //     },
+//   //     {
+//   //       path: "/register",
+//   //       element: <RegisterRoute />,
+//   //       loader: registerLoader,
+//   //       action: registerAction,
+//   //     },
+//   //     {
+//   //       path: "/login",
+//   //       element: <LoginRoute />,
+//   //       loader: loginLoader,
+//   //       action: loginAction,
+//   //     },
+//   //   ],
+//   // },
+// ]);
+
+// ReactDOM.createRoot(document.getElementById("root")!).render(
+//   // <React.StrictMode>
+//   // </React.StrictMode>
+//     <RouterProvider router={router} />
+// );

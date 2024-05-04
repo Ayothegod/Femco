@@ -15,13 +15,13 @@ import { loginSchema } from "../lib/schema";
 import { useForm } from "@conform-to/react";
 import LogOut from "../components/utils/LogOut";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function Loader({ request }: LoaderFunctionArgs) {
   const result = await getUserDetails();
   console.log(result);
   return json({ msg: "hello" });
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function Action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const intent = await formData.get("intent");
 

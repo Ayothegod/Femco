@@ -1,15 +1,16 @@
 
+import { LoaderFunctionArgs, json, useLoaderData } from "react-router-dom";
 import {
   isLoggedInNavLink,
   isNotLoggedInNavLink,
   loggedInIcons,
 } from "../../lib/database";
+import { getUserDetails } from "../../services/authAction";
 import { Button } from "../ui/button";
 import IsAuthPage from "../utils/IsAuthPage";
 import { IsLoggedIn } from "../utils/IsLoggedIn";
 
-export default function Header() {
-  const user = false;
+export default function Header({user} : any) {
 
   return (
     <header className="pageStyle flex items-center justify-between py-6">

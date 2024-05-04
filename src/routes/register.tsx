@@ -15,7 +15,7 @@ import { parseWithZod } from "@conform-to/zod";
 import { useForm } from "@conform-to/react";
 import LogOut from "../components/utils/LogOut";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function Loader({ request }: LoaderFunctionArgs) {
   const result = await getUserDetails();
   console.log(result);
   return json({ msg: "hello" });
