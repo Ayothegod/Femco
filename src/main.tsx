@@ -9,13 +9,14 @@ import  Root, { Loader as rootLoader } from "./routes/root.tsx";
 import Shop from "./routes/shop.tsx";
 import RegisterRoute, {
   Loader as registerLoader,
-  action as registerAction,
+  Action as registerAction,
 } from "./routes/register.tsx";
 import ErrorPage from "./routes/error-page.tsx";
 import LoginRoute, {
   Loader as loginLoader,
   Action as loginAction,
 } from "./routes/login.tsx";
+import LearnAppwrite, {Loader as LearnLoader} from "./routes/learn-appwrite.tsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,12 @@ const router = createBrowserRouter([
         element: <LoginRoute />,
         loader: loginLoader,
         action: loginAction,
+      },
+      {
+        path: "/learn",
+        element: <LearnAppwrite />,
+        loader: LearnLoader,
+        // action: loginAction,
       },
     ],
   },

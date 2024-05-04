@@ -21,7 +21,7 @@ export async function Loader({ request }: LoaderFunctionArgs) {
   return json({ msg: "hello" });
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function Action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const intent = await formData.get("intent");
 

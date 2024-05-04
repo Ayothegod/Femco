@@ -17,15 +17,24 @@ import chanelLogo from "../fascoAsset/logo (3).png";
 import calvinKleinLogo from "../fascoAsset/logo.png";
 import slider from "../fascoAsset/slider.png";
 import { getUserDetails } from "../services/authAction";
+import { getNewArrivals } from "../services/dbAction";
 
 export async function Loader() {
-  const result = await getUserDetails();
-  console.log(result);
-  return json(null);
+  try {
+    const result = await getUserDetails();
+    // console.log(result);
+    const {maleResult, femaleResult}: any = await getNewArrivals("short","female");
+    console.log(maleResult, femaleResult);
+    return json({maleResult, femaleResult})
+  } catch (error) {
+    return json({ error: "An error occured!" });
+  }
 }
 
 export default function Root() {
-  // const loaderData = useLoaderData();
+  const loaderData: any = useLoaderData();
+  console.log(loaderData);
+  // console.log(loaderData.maleResult, loaderData.femaleResult);
 
   return (
     <main className="">
@@ -103,7 +112,7 @@ export default function Root() {
       <DealsOfTheMonth />
 
       {/* New Arrivals */}
-      <NewArrivals />
+      <NewArrivals male={loaderData.maleResult} female={loaderData.femaleResult}/>
 
       <section className="hidden md:block mt-16 mb-16">
         <img src={slider} alt="top-banner-image" className="" />

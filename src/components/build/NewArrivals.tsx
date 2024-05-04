@@ -4,12 +4,14 @@ import femaleFashion from "../../fascoAsset/Images.png";
 import female2Png from "../../fascoAsset/Rectangle 19280 (1).png";
 import female1Png from "../../fascoAsset/Rectangle 19280.png";
 import maleSvg from "../../fascoAsset/image 2.svg";
-import femaleSvg from "../../fascoAsset/image 3.svg"
+import femaleSvg from "../../fascoAsset/image 3.svg";
 // import femaleSvg from "../fascoAsset/image 3.svg";
 import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
-export default function NewArrivals() {
+export default function NewArrivals({ male, female }: any) {
+  // console.log(male, female);
+
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(0);
 
   const handleButtonClick = (index: any) => {
@@ -29,41 +31,41 @@ export default function NewArrivals() {
       </div>
 
       <Tabs defaultValue="men-fashion" className="mt-4">
-        <TabsList className="flex items-center justify-between overflow-x-scroll sm:overflow-x-hidden">
+        <TabsList className="flex items-center justify-between overflow-x-scroll sm:overflow-x-hidden bg-neutral-800">
           {tabsTrigger.map((tab, index) => (
             <TabsTrigger
               value={tab.value}
-              className={`w-full relative`}
+              className={`w-full relative ${
+                selectedButtonIndex == index && "bg-black"
+              }`}
               key={index}
               onClick={() => handleButtonClick(index)}
             >
               {tab.text}
-              <span
-                className={`${
-                  selectedButtonIndex !== index &&
-                  "absolute w-2 h-2 bg-red-500 right-2 top-1 rounded-full animate-pulse"
-                } `}
-              ></span>
             </TabsTrigger>
           ))}
         </TabsList>
 
         <div className="mt-4">
           <TabsContent value="men-fashion">
-            <div className="p-1">
-              <img
-                src={femaleFashion}
-                alt="image@svg"
-                className="h-48 w-full sm:w-48 object-cover object-top"
-              />
+            <div className="p-10 border">
+              {male &&
+                male.documents.map((data) => (
+                  <div key={data.id}>
+                    <p>{data.title}</p>
+                  </div>
+                ))}
             </div>
           </TabsContent>
           <TabsContent value="women-fashion">
-            <img
-              src={femaleSvg}
-              alt="image@svg"
-              className="h-48 w-48 object-cover object-top"
-            />
+            <div className="p-1 border">
+              {female &&
+                female.documents.map((data) => (
+                  <div key={data.id}>
+                    <p>{data.title}</p>
+                  </div>
+                ))}
+            </div>
           </TabsContent>
           <TabsContent value="women-accessories">
             <img
