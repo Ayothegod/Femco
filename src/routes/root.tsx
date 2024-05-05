@@ -31,6 +31,8 @@ export async function Loader() {
   }
 }
 
+// https://cloud.appwrite.io/v1/storage/buckets/663689d1003db710b806/files/66368a18002f9da9d5ef/view?project=66321a6b0014716feffd&mode=admin
+
 export default function Root() {
   const loaderData: any = useLoaderData();
   console.log(loaderData);

@@ -50,7 +50,7 @@ export default function NewArrivals({ male, female }: any) {
           <TabsContent value="men-fashion">
             <div className="p-10 border">
               {male &&
-                male.documents.map((data) => (
+                male.documents.map((data: any) => (
                   <div key={data.id}>
                     <p>{data.title}</p>
                   </div>
@@ -60,7 +60,7 @@ export default function NewArrivals({ male, female }: any) {
           <TabsContent value="women-fashion">
             <div className="p-1 border">
               {female &&
-                female.documents.map((data) => (
+                female.documents.map((data: any) => (
                   <div key={data.id}>
                     <p>{data.title}</p>
                   </div>
