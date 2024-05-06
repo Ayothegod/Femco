@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 
-
 export default function IsAuthPage({
   children,
 }: {
@@ -10,6 +9,7 @@ export default function IsAuthPage({
   const path = location.pathname;
 
   return (
-    <>{path !== "/login" && path !== "/register" ? <>{children}</> : null}</>
+    <>{children}</>
+    // <>{path !== "/login" && path !== "/register" ? <>{children}</> : null}</>
   );
 }
