@@ -17,29 +17,26 @@ import chanelLogo from "../fascoAsset/logo (3).png";
 import calvinKleinLogo from "../fascoAsset/logo.png";
 import slider from "../fascoAsset/slider.png";
 import { getUserDetails } from "../services/authAction";
-import { getNewArrivals } from "../services/dbAction";
+import client from "../sanity/client";
 
 export async function Loader() {
   try {
     const result = await getUserDetails();
-    // console.log(result);
-    const {maleResult, femaleResult}: any = await getNewArrivals("short","female");
-    console.log(maleResult, femaleResult);
-    return json({maleResult, femaleResult})
+    const data = await client.fetch(`*[_type == "event"]`);
+
+    console.log(result, data);
+    return json({ data: "data" });
   } catch (error) {
     return json({ error: "An error occured!" });
   }
 }
 
-// https://cloud.appwrite.io/v1/storage/buckets/663689d1003db710b806/files/66368a18002f9da9d5ef/view?project=66321a6b0014716feffd&mode=admin
-
 export default function Root() {
   const loaderData: any = useLoaderData();
   console.log(loaderData);
-  // console.log(loaderData.maleResult, loaderData.femaleResult);
 
   return (
-    <main className="">
+    <main className="min-h-[50vh]">
       <section className="pageStyle grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="hidden md:block w-full h-[400px] md:h-[500px] bg-gray-300 rounded-md">
           <img
@@ -114,7 +111,7 @@ export default function Root() {
       <DealsOfTheMonth />
 
       {/* New Arrivals */}
-      <NewArrivals male={loaderData.maleResult} female={loaderData.femaleResult}/>
+      <NewArrivals />
 
       <section className="hidden md:block mt-16 mb-16">
         <img src={slider} alt="top-banner-image" className="" />

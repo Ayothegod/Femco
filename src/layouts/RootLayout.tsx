@@ -17,7 +17,6 @@ export default function RootLayout({ children }: any) {
   return (
     <main className=" font-inter">
       <Header user={user} />
-      {/* {children} */}
       <Outlet />
       <Footer />
     </main>

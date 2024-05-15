@@ -1,18 +1,30 @@
-import { LoaderFunctionArgs, json, useLoaderData } from "react-router-dom";
-import { getNewArrivals } from "../services/dbAction";
+import { LoaderFunctionArgs, json } from "react-router-dom";
+import client from "../sanity/client";
 
 export async function Loader({ request }: LoaderFunctionArgs) {
-  const {maleResult, femaleResult}: any = await getNewArrivals("short","female");
-  console.log(maleResult, femaleResult);
-
+  // const data = await client.fetch(`*[_type == "event"]`)
+//  {
+//   title,
+//   slug,
+//   body,
+//   publishedAt,
+//   mainImage {
+//     asset -> {
+//       _id,
+//       url
+//     },
+//     alt,
+//   }
+// } | order(publishedAt desc)
+  // console.log(data);
   return json({ user: "user" });
 }
 
 export default function LearnAppwrite() {
-  const data = useLoaderData();
+  // const data = useLoaderData();
   return (
-    <div>
+    <main className="min-h-[50vh]">
       <p>Bro this is learn appwrite</p>
-    </div>
+    </main>
   );
 }

@@ -73,24 +73,3 @@ export const fetchData = {
     }
   },
 };
-
-// async function add(idea) {
-//   const response = await databases.createDocument(
-//     IDEAS_DATABASE_ID,
-//     IDEAS_COLLECTION_ID,
-//     ID.unique(),
-//     idea
-//   );
-// }
-
-// async function remove(id) {
-//   await databases.deleteDocument(IDEAS_DATABASE_ID, IDEAS_COLLECTION_ID, id);
-// }
-
-// async function init() {
-//   const response = await databases.listDocuments(
-//     IDEAS_DATABASE_ID,
-//     IDEAS_COLLECTION_ID,
-//     [Query.orderDesc("$createdAt"), Query.limit(10)]
-//   );
-// }
