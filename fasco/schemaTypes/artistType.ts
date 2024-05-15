@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
-export const allModel = defineType({
-  name: 'clothing',
-  title: 'Clothing',
+export const artistType = defineType({
+  name: 'artist',
+  title: 'Artist',
   type: 'document',
   fields: [
     defineField({
@@ -10,5 +10,4 @@ export const allModel = defineType({
       type: 'string',
     }),
   ],
-  
 })
