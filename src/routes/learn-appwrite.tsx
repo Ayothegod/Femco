@@ -10,7 +10,8 @@ export default function LearnAppwrite() {
   const [input, setInput] = React.useState("")
   let [searchParams, setSearchParams] = useSearchParams();
 
-  console.log(searchParams);
+  console.log(searchParams.get("name"));
+  // console.log(searchParams.get("who"));
 
   function handleSubmit(event: any) {
     event.preventDefault();

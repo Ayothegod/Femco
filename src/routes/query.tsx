@@ -1,32 +1,69 @@
-import { ChangeEvent } from "react";
-import { useSearchParams } from "react-router-dom";
+// import { ChangeEvent, useState } from "react";
+// import { useSearchParams } from "react-router-dom";
 
-// Temporary key of my query parameter
-const MY_QUERY_PARAMETER: string = "myQueryParameter";
+// export const Query = (props: any) => {
+//   const [searchParams, setSearchParams] = useSearchParams();
+//   const newQueryParameters: URLSearchParams = new URLSearchParams();
+//   const queryTerm = "search";
 
-export const Query = (props: any) => {
-  // Hook which returns a tuple. First element is the current URLSearchParams object and second element is the function to take in the new URLSearchParams object alongside a configuration object to either replace the query parameters or not alongside state.
-  const [currentQueryParameters, setSearchParams] = useSearchParams();
-  const newQueryParameters: URLSearchParams = new URLSearchParams();
+//   const [input, setInput] = useState("");
 
-  console.log(currentQueryParameters.get(MY_QUERY_PARAMETER));
+//   console.log(searchParams.get(queryTerm));
 
-  const onInputValueChangeEventHandler: (
-    event: ChangeEvent<HTMLInputElement>
-  ) => void = ({ target: { value } }: ChangeEvent<HTMLInputElement>): void => {
-    if (value) newQueryParameters.set(MY_QUERY_PARAMETER, value);
+//   const onInputValueChangeEventHandler = (e: any) => {
+//     setInput(e.target.value);
 
-    setSearchParams(newQueryParameters);
+//     if (input) newQueryParameters.set(queryTerm, input);
+//     setSearchParams(newQueryParameters);
+//   };
+
+//   // const onInputValueChangeEventHandler: (
+//   //   event: ChangeEvent<HTMLInputElement>
+//   // ) => void = ({ target: { value } }: ChangeEvent<HTMLInputElement>): void => {
+//   //   if (value) newQueryParameters.set(MY_QUERY_PARAMETER, value);
+
+//   //   setSearchParams(newQueryParameters);
+//   // };
+
+//   return (
+//     <div className="max-w-[800px] mx-auto px-8">
+//       <input
+//         className="mt-2 border"
+//         type="text"
+//         onChange={onInputValueChangeEventHandler}
+//       />
+//     </div>
+//   );
+// };
+
+import { useEffect, useState } from "react";
+import {
+  useSearchParams
+} from "react-router-dom";
+
+export const Query = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [paramValue, setParamValue] = useState("");
+
+  useEffect(() => {
+    setParamValue(searchParams.get("myParam") || "");
+  }, [searchParams]);
+
+  const handleChange = (event: any) => {
+    const value = event.target.value;
+    setParamValue(value);
+    setSearchParams({ myParam: value });
   };
 
   return (
-    <div className="max-w-[800px] mx-auto px-8">
-
-    <input
-      className="mt-2 border"
-      type="text"
-      onChange={onInputValueChangeEventHandler}
+    <div>
+      <input
+        type="text"
+        value={paramValue}
+        onChange={handleChange}
+        placeholder="Set URL parameter"
       />
-      </div>
+      <p>Value of myParam: {paramValue}</p>
+    </div>
   );
 };
