@@ -1,5 +1,15 @@
 import {defineField, defineType} from 'sanity'
 
+// TODO: things to learn about in sanity
+// groups: [
+//   {name: 'details', title: 'Details'},
+//   {name: 'editorial', title: 'Editorial'},
+// ],
+
+// validation: (rule) => rule.min(6).error('must be more than 6 letters.'),
+// hidden: ({document}) => !document?.name,
+
+
 export const eventType = defineType({
   name: 'event',
   title: 'Event',

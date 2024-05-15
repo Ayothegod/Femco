@@ -1,10 +1,24 @@
+import { json, useLoaderData } from "react-router-dom";
 import Filters from "../components/build/Filters";
 // import FollowUs from "../components/build/FollowUs";
 // import Newsletter from "../components/build/Newsletter";
 // import slider from "../fascoAsset/slider.png";
 import Crucible from "../components/utils/Crucible";
+import client from "../sanity/client";
+
+export async function Loader() {
+  try {
+    const data = await client.fetch(`*[_type == "event"]`);
+    // console.log( data);
+    return json({ data: "data" });
+  } catch (error) {
+    return json({ error: "An error occured!" });
+  }
+}
 
 export default function Shop() {
+  const loaderData: any = useLoaderData();
+  console.log(loaderData);
   return (
     <main>
     <section className="pageStyle ">
