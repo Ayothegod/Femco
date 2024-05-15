@@ -9,6 +9,8 @@
 - [ ] add border buttom to the active link 
 - [ ] ooops
 
+-- check for the update in isAuthPage
+
 mkdir src/routes
 touch src/routes/root.jsx
 

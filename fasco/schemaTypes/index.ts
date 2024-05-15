@@ -1,1 +1,3 @@
-export const schemaTypes = []
+import { allModel } from "./allModel";
+
+export const schemaTypes = [allModel]
