@@ -5,10 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout, {
   Loader as rootLayoutLoader,
 } from "./layouts/RootLayout.tsx";
-import  Root, { Loader as rootLoader } from "./routes/root.tsx";
-import Shop, {
-  Loader as shopLoader,
-} from "./routes/shop.tsx";
+import Root, { Loader as rootLoader } from "./routes/root.tsx";
+import Shop, { Loader as shopLoader } from "./routes/shop.tsx";
 import RegisterRoute, {
   Loader as registerLoader,
   Action as registerAction,
@@ -18,7 +16,10 @@ import LoginRoute, {
   Loader as loginLoader,
   Action as loginAction,
 } from "./routes/login.tsx";
-import LearnAppwrite, {Loader as LearnLoader} from "./routes/learn-appwrite.tsx";
+import LearnAppwrite, {
+  Loader as LearnLoader,
+} from "./routes/learn-appwrite.tsx";
+import { Query } from "./routes/query.tsx";
 
 const router = createBrowserRouter([
   {
@@ -32,9 +33,13 @@ const router = createBrowserRouter([
         loader: rootLoader,
       },
       {
+        path: "/query",
+        element: <Query />,
+      },
+      {
         path: "/shop",
         element: <Shop />,
-        loader: shopLoader
+        loader: shopLoader,
       },
       {
         path: "/register",
@@ -61,11 +66,8 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   // <React.StrictMode>
   // </React.StrictMode>
-    <RouterProvider router={router} />
+  <RouterProvider router={router} />
 );
-
-
-
 
 // import React from "react";
 // import ReactDOM from "react-dom/client";

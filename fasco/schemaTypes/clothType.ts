@@ -45,7 +45,7 @@ export const clothType = defineType({
       validation: (rule) => rule.required().error(`All clothing item must have an image.`),
     }),
     defineField({
-      name: 'other-images',
+      name: 'otherImages',
       type: 'array',
       of: [{type: 'image'}],
     }),

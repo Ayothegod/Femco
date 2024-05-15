@@ -6,7 +6,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
   return (
     <IsAuthPage>
-      <footer className="pageStyle pb-6 mt-24">
+      <footer className="pageStyle pb-6">
         <div className=" flex flex-col md:flex-row  justify-between ">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold tracking-wide">
             FASCO
