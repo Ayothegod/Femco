@@ -1,22 +1,22 @@
-import { LoaderFunctionArgs, Outlet, json, useLoaderData } from "react-router-dom";
+import { LoaderFunctionArgs, Outlet, defer, json, useLoaderData } from "react-router-dom";
 import Footer from "../components/build/Footer";
 import Header from "../components/build/Header";
 import { getUserDetails } from "../services/authAction";
 
 export async function Loader({ request }: LoaderFunctionArgs) {
-  const user = await getUserDetails();
+  const user = getUserDetails();
   if (!user) {
-    return json(null);
+    return json({user: null});
   }
-  return json({ user: user});
+  return defer({ user: user})
 }
 
 export default function RootLayout({ children }: any) {
-  const user = useLoaderData()
+  const user: any = useLoaderData()
   
   return (
     <main className=" font-inter">
-      <Header user={user} />
+      <Header user={user.user} />
       <Outlet />
       <Footer />
     </main>

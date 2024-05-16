@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -19,11 +19,16 @@ import LoginRoute, {
 import LearnAppwrite, {
   Loader as LearnLoader,
 } from "./routes/learn-appwrite.tsx";
-import { Query } from "./routes/query.tsx";
+import { Query, Action as queryAction } from "./routes/query.tsx";
+import PageLoader from "./components/ui/PageLoader.tsx";
 
 const router = createBrowserRouter([
   {
-    element: <RootLayout />,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <RootLayout />
+      </Suspense>
+    ),
     loader: rootLayoutLoader,
     children: [
       {
@@ -35,6 +40,7 @@ const router = createBrowserRouter([
       {
         path: "/query",
         element: <Query />,
+        action: queryAction
       },
       {
         path: "/shop",
@@ -55,7 +61,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/learn",
-        element: <LearnAppwrite />,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <LearnAppwrite />
+          </Suspense>
+        ),
         loader: LearnLoader,
         // action: loginAction,
       },

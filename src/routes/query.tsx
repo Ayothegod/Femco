@@ -1,69 +1,67 @@
-// import { ChangeEvent, useState } from "react";
-// import { useSearchParams } from "react-router-dom";
-
-// export const Query = (props: any) => {
-//   const [searchParams, setSearchParams] = useSearchParams();
-//   const newQueryParameters: URLSearchParams = new URLSearchParams();
-//   const queryTerm = "search";
-
-//   const [input, setInput] = useState("");
-
-//   console.log(searchParams.get(queryTerm));
-
-//   const onInputValueChangeEventHandler = (e: any) => {
-//     setInput(e.target.value);
-
-//     if (input) newQueryParameters.set(queryTerm, input);
-//     setSearchParams(newQueryParameters);
-//   };
-
-//   // const onInputValueChangeEventHandler: (
-//   //   event: ChangeEvent<HTMLInputElement>
-//   // ) => void = ({ target: { value } }: ChangeEvent<HTMLInputElement>): void => {
-//   //   if (value) newQueryParameters.set(MY_QUERY_PARAMETER, value);
-
-//   //   setSearchParams(newQueryParameters);
-//   // };
-
-//   return (
-//     <div className="max-w-[800px] mx-auto px-8">
-//       <input
-//         className="mt-2 border"
-//         type="text"
-//         onChange={onInputValueChangeEventHandler}
-//       />
-//     </div>
-//   );
-// };
-
-import { useEffect, useState } from "react";
 import {
-  useSearchParams
+  useSearchParams,
+  useParams,
+  Form,
+  ActionFunctionArgs,
+  redirect,
 } from "react-router-dom";
+import { Button } from "../components/ui/button";
+
+export async function Action({ request }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const search = await formData.get("search");
+  console.log(search);
+  
+  const url = new URL(request.url);
+  const searchParams = new URLSearchParams(url.search);
+  
+  // Set the desired search parameter
+  searchParams.set("age", "0");
+  console.log("set");
+
+  // Construct the new URL with the updated search parameters
+  url.search = searchParams.toString();
+
+  return redirect(url.toString())
+}
 
 export const Query = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [paramValue, setParamValue] = useState("");
+  // console.log(searchParams);
 
-  useEffect(() => {
-    setParamValue(searchParams.get("myParam") || "");
-  }, [searchParams]);
+  const handleClick = () => {
+    const currentSearchParams = new URLSearchParams(searchParams);
+    currentSearchParams.set("age", "7530");
+    setSearchParams(currentSearchParams);
+  };
+
+  const handleSearch = (e: any) => {
+    const currentSearchParams = new URLSearchParams(searchParams);
+    currentSearchParams.set("search", e.target.value);
+    setSearchParams(currentSearchParams);
+  };
 
   const handleChange = (event: any) => {
-    const value = event.target.value;
-    setParamValue(value);
-    setSearchParams({ myParam: value });
+    const search = event.target.value;
+    setSearchParams((prevParams) => {
+      const newParams = new URLSearchParams(prevParams);
+      newParams.set("search", search);
+      return newParams;
+    });
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={paramValue}
-        onChange={handleChange}
-        placeholder="Set URL parameter"
-      />
-      <p>Value of myParam: {paramValue}</p>
+    <div className="min-h-[50vh]">
+      <Form method="post">
+        <input
+          type="text"
+          name="search"
+          placeholder="Set URL parameter"
+          // onChange={handleSearch}
+        />
+      </Form>
+
+      <Button onClick={handleClick}>Set Age</Button>
     </div>
   );
 };

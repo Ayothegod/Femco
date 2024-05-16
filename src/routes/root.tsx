@@ -21,10 +21,8 @@ import client from "../sanity/client";
 
 export async function Loader() {
   try {
-    const result = await getUserDetails();
     // const data = await client.fetch(`*[_type == "event"]`);
     // console.log( data);
-    // console.log(result, data);
     return json({ data: "data" });
   } catch (error) {
     return json({ error: "An error occured!" });

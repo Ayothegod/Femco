@@ -1,5 +1,9 @@
-
-import { LoaderFunctionArgs, json, useLoaderData } from "react-router-dom";
+import {
+  Await,
+  LoaderFunctionArgs,
+  json,
+  useLoaderData,
+} from "react-router-dom";
 import {
   isLoggedInNavLink,
   isNotLoggedInNavLink,
@@ -9,49 +13,59 @@ import { getUserDetails } from "../../services/authAction";
 import { Button } from "../ui/button";
 import IsAuthPage from "../utils/IsAuthPage";
 import { IsLoggedIn } from "../utils/IsLoggedIn";
+import { Suspense } from "react";
+import PageLoader from "../ui/PageLoader";
 
-export default function Header({user} : any) {
+export default function Header({ user }: any) {
+  // console.log(user);
+  // user.then((res: any) => console.log(res));
 
   return (
-    <header className="pageStyle flex items-center justify-between py-6">
-      <IsLoggedIn>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold tracking-wide">
-          FASCO
-        </h1>
-      </IsLoggedIn>
+    <>
+      <header className="pageStyle flex items-center justify-between py-6">
+        <IsLoggedIn>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold tracking-wide">
+            FASCO
+          </h1>
+        </IsLoggedIn>
 
-      <IsAuthPage>
-        {user ? (
-          <nav className=" contents">
-            <ul className="hidden md:flex items-center gap-8">
-              {isLoggedInNavLink.map((link, idx) => (
-                <li key={idx} className="text-sm md:text-base">
-                  <a href={link.href}>{link.name}</a>
-                </li>
-              ))}
-            </ul>
+        <IsAuthPage>
+          <Suspense fallback={<PageLoader />}>
+            <Await resolve={user}>
+              {user ? (
+                <nav className=" contents">
+                  <ul className="hidden md:flex items-center gap-8">
+                    {isLoggedInNavLink.map((link, idx) => (
+                      <li key={idx} className="text-sm md:text-base">
+                        <a href={link.href}>{link.name}</a>
+                      </li>
+                    ))}
+                  </ul>
 
-            <div className="flex gap-4 md:gap-8">
-              {loggedInIcons.map((icon, id) => (
-                <div key={id}>
-                  <icon.icon />
-                </div>
-              ))}
-            </div>
-          </nav>
-        ) : (
-          <nav className="flex items-center gap-8">
-            <ul className="hidden md:flex items-center gap-8">
-              {isNotLoggedInNavLink.map((link, idx) => (
-                <li key={idx} className="text-sm md:text-base">
-                  <a href={link.href}>{link.name}</a>
-                </li>
-              ))}
-            </ul>
-            <Button>Sign up</Button>
-          </nav>
-        )}
-      </IsAuthPage>
-    </header>
+                  <div className="flex gap-4 md:gap-8">
+                    {loggedInIcons.map((icon, id) => (
+                      <div key={id}>
+                        <icon.icon />
+                      </div>
+                    ))}
+                  </div>
+                </nav>
+              ) : (
+                <nav className="flex items-center gap-8">
+                  <ul className="hidden md:flex items-center gap-8">
+                    {isNotLoggedInNavLink.map((link, idx) => (
+                      <li key={idx} className="text-sm md:text-base">
+                        <a href={link.href}>{link.name}</a>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button>Sign up</Button>
+                </nav>
+              )}
+            </Await>
+          </Suspense>
+        </IsAuthPage>
+      </header>
+    </>
   );
 }
