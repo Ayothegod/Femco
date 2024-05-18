@@ -8,12 +8,25 @@ import Crucible from "../components/utils/Crucible";
 import { getAllCloths } from "../services/sanityActions";
 import { Hammer, Menu } from "lucide-react";
 import { urlFor } from "../components/utils/UrlFor";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectScrollDownButton,
+  SelectTrigger,
+  SelectValue,
+  SelectScrollUpButton,
+  SelectSeparator,
+} from "../components/ui/select";
+import { Button } from "../components/ui/button";
 
 export async function Loader() {
   try {
-    const cloth = await getAllCloths();
+    // const cloth = await getAllCloths();
     // console.log(cloth);
-    return json(cloth);
+    return json("cloth");
   } catch (error) {
     return json({ error: "An error occured!" });
   }
@@ -24,7 +37,6 @@ export default function Shop() {
   console.log(loaderData);
   return (
     <main className="min-h-[60vh]">
-
       <section className="pageStyle ">
         <h2 className="text-2xl sm:text-3xl md:text-2xl font-serif font-bold tracking-wide text-center">
           Fashion
@@ -47,20 +59,39 @@ export default function Shop() {
           <div className="flex items-center justify-between">
             <p>Dropdown</p>
             <div>
-              <Menu className="border h-8 w-8 p-1 rounded-md"/>
+              <Menu className="border h-8 w-8 p-1 rounded-md" />
             </div>
           </div>
 
+          <Select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select a fruit" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Fruits</SelectLabel>
+                <Button variant="outline" className="m-0 p-0 border-none outline-none w-full">
+                  <SelectItem value="apple">Apple</SelectItem>
+                </Button>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="blueberry">Blueberry</SelectItem>
+                <SelectItem value="grapes">Grapes</SelectItem>
+                <SelectItem value="pineapple">Pineapple</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+
           <div>
-            {
-              loaderData?.allCloths?.map((cloth: any) => (
-                <div key={cloth._id}>
-                  <h3>{cloth.name}</h3>
-                  <h3>#{cloth.price}</h3>
-                  <img src={urlFor(cloth.image).width(300).url()} alt={cloth.slug || 'Image-alt'} />
-                </div>
-              ))
-            }
+            {loaderData?.allCloths?.map((cloth: any) => (
+              <div key={cloth._id}>
+                <h3>{cloth.name}</h3>
+                <h3>#{cloth.price}</h3>
+                <img
+                  src={urlFor(cloth.image).width(300).url()}
+                  alt={cloth.slug || "Image-alt"}
+                />
+              </div>
+            ))}
           </div>
         </main>
       </section>

@@ -19,16 +19,12 @@ import LoginRoute, {
 import LearnAppwrite, {
   Loader as LearnLoader,
 } from "./routes/learn-appwrite.tsx";
-import { Query, Action as queryAction } from "./routes/query.tsx";
+import { Query, Action as queryAction, Loader as queryLoader } from "./routes/query.tsx";
 import PageLoader from "./components/ui/PageLoader.tsx";
 
 const router = createBrowserRouter([
   {
-    element: (
-      <Suspense fallback={<PageLoader />}>
-        <RootLayout />
-      </Suspense>
-    ),
+    element: <RootLayout />,
     loader: rootLayoutLoader,
     children: [
       {
@@ -40,7 +36,8 @@ const router = createBrowserRouter([
       {
         path: "/query",
         element: <Query />,
-        action: queryAction
+        action: queryAction,
+        loader: queryLoader
       },
       {
         path: "/shop",
