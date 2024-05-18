@@ -6,7 +6,7 @@ import RootLayout, {
   Loader as rootLayoutLoader,
 } from "./layouts/RootLayout.tsx";
 import Root, { Loader as rootLoader } from "./routes/root.tsx";
-import Shop, { Loader as shopLoader } from "./routes/shop.tsx";
+import Shop, { Loader as shopLoader, Action as shopAction } from "./routes/shop.tsx";
 import RegisterRoute, {
   Loader as registerLoader,
   Action as registerAction,
@@ -43,6 +43,7 @@ const router = createBrowserRouter([
         path: "/shop",
         element: <Shop />,
         loader: shopLoader,
+        action: shopAction
       },
       {
         path: "/register",
