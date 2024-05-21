@@ -17,7 +17,7 @@ import LogOut from "../components/utils/LogOut";
 
 export async function Loader({ request }: LoaderFunctionArgs) {
   const result = await getUserDetails();
-  console.log(result);
+  // console.log(result);
   return json({ msg: "hello" });
 }
 

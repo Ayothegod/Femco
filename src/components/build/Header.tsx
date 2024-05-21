@@ -1,24 +1,20 @@
+import { Suspense } from "react";
 import {
-  Await,
-  LoaderFunctionArgs,
-  json,
-  useLoaderData,
+  Await
 } from "react-router-dom";
 import {
   isLoggedInNavLink,
   isNotLoggedInNavLink,
   loggedInIcons,
 } from "../../lib/database";
-import { getUserDetails } from "../../services/authAction";
+import PageLoader from "../ui/PageLoader";
 import { Button } from "../ui/button";
 import IsAuthPage from "../utils/IsAuthPage";
 import { IsLoggedIn } from "../utils/IsLoggedIn";
-import { Suspense } from "react";
-import PageLoader from "../ui/PageLoader";
 
 export default function Header({ user }: any) {
-  // console.log(user);
-  // user.then((res: any) => console.log(res));
+  user.then((res: any) => console.log(res));
+
 
   return (
     <>
@@ -32,35 +28,42 @@ export default function Header({ user }: any) {
         <IsAuthPage>
           <Suspense fallback={<PageLoader />}>
             <Await resolve={user}>
-              {user ? (
-                <nav className=" contents">
-                  <ul className="hidden md:flex items-center gap-8">
-                    {isLoggedInNavLink.map((link, idx) => (
-                      <li key={idx} className="text-sm md:text-base">
-                        <a href={link.href}>{link.name}</a>
-                      </li>
-                    ))}
-                  </ul>
 
-                  <div className="flex gap-4 md:gap-8">
-                    {loggedInIcons.map((icon, id) => (
-                      <div key={id}>
-                        <icon.icon />
+              {(resolvedUser) => (
+                <>
+                  {
+                    resolvedUser &&
+                    <nav className=" contents">
+                      <ul className="hidden md:flex items-center gap-8">
+                        {isLoggedInNavLink.map((link, idx) => (
+                          <li key={idx} className="text-sm md:text-base">
+                            <a href={link.href}>{link.name}</a>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="flex gap-4 md:gap-8">
+                        {loggedInIcons.map((icon, id) => (
+                          <div key={id}>
+                            <icon.icon />
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </nav>
-              ) : (
-                <nav className="flex items-center gap-8">
-                  <ul className="hidden md:flex items-center gap-8">
-                    {isNotLoggedInNavLink.map((link, idx) => (
-                      <li key={idx} className="text-sm md:text-base">
-                        <a href={link.href}>{link.name}</a>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button>Sign up</Button>
-                </nav>
+                    </nav>
+                  }
+
+
+                  {!resolvedUser && <nav className="flex items-center gap-8">
+                    <ul className="hidden md:flex items-center gap-8">
+                      {isNotLoggedInNavLink.map((link, idx) => (
+                        <li key={idx} className="text-sm md:text-base">
+                          <a href={link.href}>{link.name}</a>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button>Sign up</Button>
+                  </nav>}
+                </>
               )}
             </Await>
           </Suspense>
@@ -69,3 +72,5 @@ export default function Header({ user }: any) {
     </>
   );
 }
+
+// heyayomideadebisi

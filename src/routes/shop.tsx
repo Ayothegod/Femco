@@ -7,6 +7,7 @@ import {
   Form,
   LoaderFunctionArgs,
   json,
+  redirect,
   useLoaderData,
   useSubmit,
 } from "react-router-dom";
@@ -52,43 +53,34 @@ export async function Loader({ request }: LoaderFunctionArgs) {
 
 export async function Action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  // const search = await formData.get("search");
-  // const age = await formData.get("age");
+  const url = new URL(request.url);
+  const searchParams = new URLSearchParams(url.search);
   // const intent = await formData.get("intent");
+
   const selectedValue = formData.get("selectedValue");
   if (selectedValue === "allClothing") {
-    console.log("allClothing:", selectedValue);
-    return null;
+    searchParams.set("tab", "allClothing");
+    url.search = searchParams.toString();
+    return redirect(url.toString());
   }
 
   if (selectedValue === "bestSelling") {
-    console.log("bestSelling:", selectedValue);
-    return null;
+    searchParams.set("tab", "bestSelling");
+    url.search = searchParams.toString();
+    return redirect(url.toString());
   }
 
   if (selectedValue === "newArrivals") {
-    console.log("newArrivals:", selectedValue);
-    return null;
+    searchParams.set("tab", "newArrivals");
+    url.search = searchParams.toString();
+    return redirect(url.toString());
   }
 
   if (selectedValue === "accessories") {
-    console.log("accessories:", selectedValue);
-    return null;
+    searchParams.set("tab", "accessories");
+    url.search = searchParams.toString();
+    return redirect(url.toString());
   }
-
-  // const url = new URL(request.url);
-  // const searchParams = new URLSearchParams(url.search);
-
-  // if (search) {
-  //   searchParams.set("search", search.toString());
-  // }
-  // if (age) {
-  //   searchParams.set("age", age.toString());
-  // }
-
-  // url.search = searchParams.toString();
-
-  // return redirect(url.toString());
 
   console.log("NOTAVALUE");
   return null;
