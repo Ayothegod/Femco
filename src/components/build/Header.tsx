@@ -13,7 +13,7 @@ import IsAuthPage from "../utils/IsAuthPage";
 import { IsLoggedIn } from "../utils/IsLoggedIn";
 
 export default function Header({ user }: any) {
-  user.then((res: any) => console.log(res));
+  // user.then((res: any) => console.log(res));
 
 
   return (
