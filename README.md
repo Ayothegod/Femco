@@ -1,20 +1,36 @@
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-- [ ] create a logo, add the logo to goggle console consent screen
-- [ ] sign up page
-- [ ] signin page
-- [ ] forget password
-- [ ] enter confirmation code
-- [ ] create new password
-- [ ] enter confirmation code
-- [ ] add border buttom to the active link 
-- [ ] ooops
+## Getting Started
 
--- check for the update in isAuthPage
+First, run the development server:
 
-mkdir src/routes
-touch src/routes/root.jsx
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-command line commands -- localforage match-sorter sort-by
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- ill be using urlQeryParams for changing the type of data to fetch, however i also want to learn how to use tabs, change tabs and use react lazy
-- once i finish this shop page ill learn the above
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
