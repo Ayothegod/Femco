@@ -2,16 +2,21 @@
 
 // import { signIn } from '@/auth'
 async function signIn(credentials: string, formData: FormData) {
-    const email = await formData.get("email")
-    // const users = [
-    //     { email: "ayodasilva12@gmail.com" },
-    //     { email: "legacyempire8@gmail.com" },
-    // ]
+    const formEmail = await formData.get("email")
+    const users = [
+        { email: "ayodasilva12@gmail.com" },
+        { email: "legacyempire8@gmail.com" },
+    ]
 
-    // users.map(email => {
-
-    // })
-    return email
+    users.map(email => {
+        if (email.email === formEmail?.toString()) {
+            console.log(email.email);
+            return email.email
+        }
+        return new Error("Error then")
+    })
+    // return email
+    return new Error("Error now")
 }
 
 export async function authenticate(_currentState: unknown, formData: FormData) {
@@ -24,7 +29,7 @@ export async function authenticate(_currentState: unknown, formData: FormData) {
                 case 'CredentialsSignin':
                     return 'Invalid credentials.'
                 default:
-                    return 'Something went wrong.'
+                    return 'Something went .'
             }
         }
         throw error
