@@ -1,6 +1,6 @@
 'use client'
 
-import { authenticate } from "@/lib/actions/authActions"
+import { authenticate } from "@/lib/actions/authAction"
 import { useFormState, useFormStatus } from 'react-dom'
 
 export default function Page() {
@@ -19,7 +19,7 @@ export default function Page() {
 function LoginButton() {
   const { pending } = useFormStatus()
 
-  const handleClick = (event) => {
+  const handleClick = (event: any) => {
     if (pending) {
       event.preventDefault()
     }
