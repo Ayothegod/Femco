@@ -1,37 +1,45 @@
-'use server'
+"use server";
+import { Client, Account } from "node-appwrite";
+import { cookies } from "next/headers";
 
-// import { signIn } from '@/auth'
-async function signIn(credentials: string, formData: FormData) {
-    const formEmail = await formData.get("email")
-    const users = [
-        { email: "ayodasilva12@gmail.com" },
-        { email: "legacyempire8@gmail.com" },
-    ]
+export async function createSessionClient() {
+    const client = new Client()
+        .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT)
+        .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT);
 
-    users.map(email => {
-        if (email.email === formEmail?.toString()) {
-            console.log(email.email);
-            return email.email
-        }
-        return new Error("Error then")
-    })
-    // return email
-    return new Error("Error now")
+    const session = cookies().get("my-custom-session");
+    if (!session || !session.value) {
+        throw new Error("No session");
+    }
+
+    client.setSession(session.value);
+
+    return {
+        get account() {
+            return new Account(client);
+        },
+    };
 }
 
-export async function authenticate(_currentState: unknown, formData: FormData) {
+export async function createAdminClient() {
+    const client = new Client()
+        .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT)
+        .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT)
+        .setKey(process.env.NEXT_APPWRITE_KEY);
+
+    return {
+        get account() {
+            return new Account(client);
+        },
+    };
+}
+
+export async function getLoggedInUser() {
     try {
-        const user = await signIn('credentials', formData)
-        console.log(user);
+        const { account } = await createSessionClient();
+        // console.log(account);
+        return await account.get();
     } catch (error) {
-        if (error) {
-            switch (error.type) {
-                case 'CredentialsSignin':
-                    return 'Invalid credentials.'
-                default:
-                    return 'Something went .'
-            }
-        }
-        throw error
+        return null;
     }
 }
